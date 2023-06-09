@@ -73,14 +73,14 @@ const updateThought = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
-  const { userId } = req.params;
+const deleteThought = async (req, res) => {
+  const { thoughtId } = req.params;
   try {
-      const user = await User.findByIdAndRemove(userId);
-      if (!user) {
-          return res.status(404).json({ message: 'User not found' });
+      const thought = await Thought.findByIdAndRemove(thoughtId);
+      if (!thought) {
+          return res.status(404).json({ message: 'Thought not found' });
       }
-      res.json({ message: 'User deleted successfully' });
+      res.json({ message: 'Thought deleted successfully' });
   } catch (err) {
       res.status(400).json(err);
   }
