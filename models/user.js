@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 // Schema to create User model
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
     {
         username: {
             type: String,
@@ -16,11 +16,11 @@ const userSchema = new mongoose.Schema(
             match: /^\S+@\S+\.\S+$/, //We can use regex  here as kind of a shorthand. Rather than creating a match function, mongoose's match lets us check if the email matches the email specification shorthand given by regex :) 
         },
         thoughts: [{
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'Thought',
         }],
         friends: [{
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'User',
         }],
     },

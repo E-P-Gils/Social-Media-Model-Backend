@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 
-const reactionSchema = new mongoose.Schema(
+const reactionSchema = new Schema(
     {
     reactionId: {
-        type: Types.ObjectId,
-        default: () => new Types.ObjectId(),
+        type: Schema.Types.ObjectId,
+        default: () => new Schema.Types.ObjectId(),
       },
     reactionBody:{
         type: String,
@@ -26,7 +26,7 @@ const reactionSchema = new mongoose.Schema(
     
 )
 
-const thoughtSchema = new mongoose.Schema(
+const thoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
@@ -54,12 +54,12 @@ const thoughtSchema = new mongoose.Schema(
         },
         id: false,
     }
-)
-    .virtual('reactionsCount')
-    // Getter
-    .get(function () {
-        return this.reactions.length;
-    })
+);
+
+thoughtSchema.virtual('reactionsCount').get(function () {
+    return this.reactions.length;
+  });
+  
 
 const Thought = model('thought', thoughtSchema);
 
